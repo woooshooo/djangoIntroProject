@@ -20,14 +20,16 @@ def detail(request, question_id):
     return render(request, 'detail.html', context)
 
 def update(request, question_id):
+    context = {}
+    question = Question.objects.get(id=question_id)
     if request.method == 'POST':
-        question = Question.objects.get(id=question_id)
         form = QuestionModelForm(request.POST, instance = question)
         if form.is_valid():
             form.save()
             return HttpResponse('Question updated')
+        else:
+            context['form'] = QuestionModelForm(instance=question)
+            return render(request, 'update.html', context)
     else:
-        question = Question.objects.get(id=question_id)
-        context = {}
         context['form'] = QuestionModelForm(instance=question)
         return render(request, 'update.html', context)
