@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 
@@ -7,6 +8,8 @@
         this is the title head
       {% endblock %}
     </title>
+
+    <link rel="stylesheet" href="{% static 'polls/materialize/css/materialize.min.css' %}">
   </head>
 
   <body>
@@ -15,6 +18,8 @@
       123456
     {% endblock %}
 
+    <script src="{% static 'polls/materialize/js/materialize.min.js' %}" charset="utf-8"></script>
   </body>
+  {% block spcripts %}{%endblock %}
 
 </html>
